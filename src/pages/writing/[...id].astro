@@ -1,0 +1,33 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { getPosts } from '../../lib/posts';
+import { formatDate, withBase } from '../../lib/site';
+import 'katex/dist/katex.min.css';
+export async function getStaticPaths() {
+  return (await getPosts()).map(post => ({ params: { id: post.id }, props: { post } }));
+}
+interface Props { post: CollectionEntry<'blog'> }
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const toc = headings.filter(heading => heading.depth === 2);
+---
+<Layout title={post.data.title} description={post.data.description} article date={post.data.pubDate} tags={post.data.tags} noindex={post.data.draft}>
+  <article class="article">
+    <header class="article-header">
+      <a class="back-link" href={withBase()}>← All writing</a>
+      {post.data.draft && <p class="draft-label">Draft · local preview only</p>}
+      <p class="article-date"><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time></p>
+      <h1>{post.data.title}</h1>
+      {post.data.description && <p class="lead">{post.data.description}</p>}
+    </header>
+    {post.data.toc && toc.length > 0 && (
+      <details class="toc">
+        <summary>On this page</summary>
+        <nav aria-label="Table of contents"><ol>{toc.map(heading => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav>
+      </details>
+    )}
+    <div class="prose"><Content /></div>
+    <a class="back-link article-back" href={withBase()}>← All writing</a>
+  </article>
+</Layout>

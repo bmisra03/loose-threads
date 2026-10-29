@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/site';
+---
+<Layout title="Page not found" noindex>
+  <section class="about prose">
+    <p class="eyebrow">404</p><h1>A loose end.</h1>
+    <p>This page could not be found. The link may have changed.</p>
+    <p><a href={withBase()}>Return to the writing →</a></p>
+  </section>
+</Layout>

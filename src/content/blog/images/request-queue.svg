@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="180" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
+<title id="title">A queue in front of a worker</title><desc id="desc">Four requests wait in order before one worker. An arrow connects the queue to the worker.</desc>
+<g fill="none" stroke="#777d72" stroke-width="1.5"><path d="M40 55h355M40 125h355"/><path d="M410 90h75m-8-6 8 6-8 6"/><rect x="505" y="55" width="150" height="70" rx="2"/>
+<rect x="65" y="68" width="54" height="44"/><rect x="143" y="68" width="54" height="44"/><rect x="221" y="68" width="54" height="44"/><rect x="299" y="68" width="54" height="44"/></g>
+<g fill="#444c3f" font-family="Georgia,serif" font-size="18" text-anchor="middle"><text x="217" y="32">Waiting requests</text><text x="580" y="96">Worker</text><text x="92" y="96">4</text><text x="170" y="96">3</text><text x="248" y="96">2</text><text x="326" y="96">1</text></g></svg>

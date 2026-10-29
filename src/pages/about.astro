@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { withBase } from '../lib/site';
+---
+<Layout title="About" description="A space to follow questions about computer systems, one thread at a time.">
+  <article class="prose about">
+    <p class="eyebrow">About this blog</p>
+    <h1>Following the threads.</h1>
+    <p class="lead">Loose Threads is an independent technical blog about how computer systems work.</p>
+    <p>The subjects range from operating systems and networking to distributed systems and cloud infrastructure. The common thread is curiosity about what happens beneath an abstraction: the mechanisms, the assumptions, and the tradeoffs.</p>
+    <p>These are notes for thinking things through. Some will be detailed explorations; others will be smaller observations or questions that deserve a closer look.</p>
+    <p>No publication schedule. Just one thread at a time.</p>
+    <p><a href={withBase()}>Browse the writing</a> or <a href={withBase('rss.xml')}>follow via RSS</a>.</p>
+  </article>
+</Layout>

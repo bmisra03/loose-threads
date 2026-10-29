@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getPosts } from '../lib/posts';
+import { SUBTITLE, formatDate, withBase } from '../lib/site';
+const posts = await getPosts();
+---
+<Layout>
+  <section class="introduction" aria-labelledby="site-title">
+    <p class="eyebrow">Notes on computer systems</p>
+    <h1 id="site-title">Loose Threads</h1>
+    <p class="subtitle">{SUBTITLE}</p>
+    <p class="intro-description">Exploring the systems beneath the surface — operating systems, networks, distributed systems, and the ideas that connect them.</p>
+  </section>
+  <section class="writing" aria-labelledby="writing-title">
+    <div class="section-heading"><h2 id="writing-title">Writing</h2><span>Latest first</span></div>
+    <ol class="post-list">
+      {posts.map(post => (
+        <li>
+          <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+          <h3><a href={withBase(`writing/${post.id}/`)}>{post.data.title}</a></h3>
+          {post.data.description && <p>{post.data.description}</p>}
+          {post.data.draft && <span class="draft-label">Draft · local preview</span>}
+        </li>
+      ))}
+    </ol>
+    {posts.length === 0 && <p>The first thread is still taking shape. Subscribe via <a href={withBase('rss.xml')}>RSS</a> to follow along.</p>}
+  </section>
+</Layout>
